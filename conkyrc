@@ -51,21 +51,36 @@ short_units yes
 pad_percents 2
 
 TEXT
+
+${font FreeSans:size=26}${alignc}${time %H:%M}${font}
+${voffset 4}${alignc}${time %A, %B %d, %Y}
+
 ${color lightgrey}${hr 1}$color
 ${font FreeSans:Bold:size=8}${color 20FFA1}[PROCESSOR]
 
 ${font}${execi 1000 cat /proc/cpuinfo | grep 'model name' | sed -e 's/model name.*: //'| uniq} $alignr ${freq_g cpu0}GHz${color}
 #${font}Core™ i7-7700K CPU @ 4.20GHz $alignr ${freq_g cpu0}GHz		${color}
 
-${color orange}${font}Thread 1: ${cpu cpu1}%$alignc ${color}${cpubar cpu1 10}                     color
-${color orange}${font}Thread 2: ${cpu cpu2}%$alignc ${color}${cpubar cpu2 10}                     color
-${color orange}${font}Thread 3: ${cpu cpu3}%$alignc ${color}${cpubar cpu3 10}                     color
-${color orange}${font}Thread 4: ${cpu cpu4}%$alignc ${color}${cpubar cpu4 10}                     color
-${color orange}${font}Thread 5: ${cpu cpu5}%$alignc ${color}${cpubar cpu5 10}                     color
-${color orange}${font}Thread 6: ${cpu cpu6}%$alignc ${color}${cpubar cpu6 10}                     color
-${color orange}${font}Thread 7: ${cpu cpu7}%$alignc ${color}${cpubar cpu7 10}                     color
-${color orange}${font}Thread 8: ${cpu cpu8}%$alignc ${color}${cpubar cpu8 10}                     color
+${color orange}${font}Thread 1:   ${alignr 0}${cpu cpu1}%${alignc} ${color}${cpubar cpu1 10,184}
+${color orange}${font}Thread 2:   ${alignr 0}${cpu cpu2}%${alignc} ${color}${cpubar cpu2 10,184}
+${color orange}${font}Thread 3:   ${alignr 0}${cpu cpu3}%${alignc} ${color}${cpubar cpu3 10,184}
+${color orange}${font}Thread 4:   ${alignr 0}${cpu cpu4}%${alignc} ${color}${cpubar cpu4 10,184}
+${color orange}${font}Thread 5:   ${alignr 0}${cpu cpu5}%${alignc} ${color}${cpubar cpu5 10,184}
+${color orange}${font}Thread 6:   ${alignr 0}${cpu cpu6}%${alignc} ${color}${cpubar cpu6 10,184}
+${color orange}${font}Thread 7:   ${alignr 0}${cpu cpu7}%${alignc} ${color}${cpubar cpu7 10,184}
+${color orange}${font}Thread 8:   ${alignr 0}${cpu cpu8}%${alignc} ${color}${cpubar cpu8 10,184}
 ${cpugraph 25, a1a1a1a1a 19BCE6}
+Temperature: ${alignr}${hwmon 0 temp 1}°C
+${color lightgrey}${hr 1}$color
+${font FreeSans:Bold:size=8}${color 20FFA1}[GPU]${font}
+${if_match ${exec lsmod | grep 'nvidia' -c} > 0}
+${color orange}${exec nvidia-smi --query-gpu=name --format=csv,noheader}${color}${alignr}${nvidia gpufreq} MHz
+Mem Clock ${alignr}${color0}${nvidia memfreq} MHz
+Mem Used ${alignr}${color0}${execi 5 nvidia-settings -q [gpu:0]/UsedDedicatedGPUMemory -t} / ${exec nvidia-settings -q [gpu:0]/TotalDedicatedGPUMemory -t} MiB
+Temperature ${alignr}${nvidia temp}°C
+${else}\
+OFF
+${endif}
 ${color lightgrey}${hr 1}$color
 ${color 20FFA1}[MEMORY] ${alignr}${color 20FFA1}Usage:${color lightgray} $memperc% 
 
