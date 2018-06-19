@@ -1,0 +1,110 @@
+background yes
+use_xft yes
+xftfont FreeSans:bold:size=8
+xftalpha 0.9
+
+update_interval 1.0
+
+total_run_times 0
+
+own_window yes
+own_window_type dock
+own_window_transparent yes
+own_window_argb_value 255
+own_window_argb_visual yes
+own_window_colour 000000
+
+colour here
+own_window_hints undecorated,sticky,skip_taskbar,skip_pager,below
+double_buffer yes
+minimum_size 150 600
+maximum_width 800
+minimum_size 150 600
+
+draw_shades no
+draw_outline no
+draw_graph_borders no
+draw_borders no
+
+alignment top_left
+
+gap_x 60
+gap_y 70
+
+no_buffers no
+uppercase no
+override_utf8_locale yes
+
+use_spacer yes
+
+default_color white
+default_shade_color AAAAAA
+default_outline_color AAAAAA
+
+cpu_avg_samples 2
+net_avg_samples 2
+
+show_graph_scale no
+show_graph_range no
+
+short_units yes
+pad_percents 2
+
+TEXT
+${color lightgrey}${hr 1}$color
+${font FreeSans:Bold:size=8}${color 20FFA1}[PROCESSOR]
+
+${font}${execi 1000 cat /proc/cpuinfo | grep 'model name' | sed -e 's/model name.*: //'| uniq} $alignr ${freq_g cpu0}GHz${color}
+#${font}Core™ i7-7700K CPU @ 4.20GHz $alignr ${freq_g cpu0}GHz		${color}
+
+${color orange}${font}Thread 1: ${cpu cpu1}%$alignc ${color}${cpubar cpu1 10}                     color
+${color orange}${font}Thread 2: ${cpu cpu2}%$alignc ${color}${cpubar cpu2 10}                     color
+${color orange}${font}Thread 3: ${cpu cpu3}%$alignc ${color}${cpubar cpu3 10}                     color
+${color orange}${font}Thread 4: ${cpu cpu4}%$alignc ${color}${cpubar cpu4 10}                     color
+${color orange}${font}Thread 5: ${cpu cpu5}%$alignc ${color}${cpubar cpu5 10}                     color
+${color orange}${font}Thread 6: ${cpu cpu6}%$alignc ${color}${cpubar cpu6 10}                     color
+${color orange}${font}Thread 7: ${cpu cpu7}%$alignc ${color}${cpubar cpu7 10}                     color
+${color orange}${font}Thread 8: ${cpu cpu8}%$alignc ${color}${cpubar cpu8 10}                     color
+${cpugraph 25, a1a1a1a1a 19BCE6}
+${color lightgrey}${hr 1}$color
+${color 20FFA1}[MEMORY] ${alignr}${color 20FFA1}Usage:${color lightgray} $memperc% 
+
+${color orange}Ram: $mem/$memmax ${color}${membar 10}
+#${color orange}Swap: $swap/$swapmax ${color}${swapbar 10}
+${memgraph 25, a1a1a1a1a 19BCE6}
+${hr 1}
+${color 20FFA1}[PROCESS] ${alignr}${color 20FFA1}Total:$color $processes ${color lightgrey}Running:$color $running_processes
+
+${color orange}Procs/CPU${goto 120}PID${goto 162}CPU%${goto 202}MEM%${alignr 0}MEM$color
+${color2}${top name 1}${color}${goto 110}${font DejaVu Sans Mono:Bold:size=8}${top pid 1}${goto 150}${top cpu 1}${goto 192}${top mem 1}${alignr 0}${top mem_res 1}${font}
+${color2}${top name 2}${color}${goto 110}${font DejaVu Sans Mono:Bold:size=8}${top pid 2}${goto 150}${top cpu 2}${goto 192}${top mem 2}${alignr 0}${top mem_res 2}${font}
+${color2}${top name 3}${color}${goto 110}${font DejaVu Sans Mono:Bold:size=8}${top pid 3}${goto 150}${top cpu 3}${goto 192}${top mem 3}${alignr 0}${top mem_res 3}${font}
+${color2}${top name 4}${color}${goto 110}${font DejaVu Sans Mono:Bold:size=8}${top pid 4}${goto 150}${top cpu 4}${goto 192}${top mem 4}${alignr 0}${top mem_res 4}${font}
+${color2}${top name 5}${color}${goto 110}${font DejaVu Sans Mono:Bold:size=8}${top pid 5}${goto 150}${top cpu 5}${goto 192}${top mem 5}${alignr 0}${top mem_res 5}${font}
+
+${color orange}Procs/MEM${goto 120}PID${goto 162}CPU%${goto 202}MEM%${alignr 0}MEM$color
+${color2}${top_mem name 1}${color}${goto 110}${font DejaVu Sans Mono:Bold:size=8}${top_mem pid 1}${goto 150}${top_mem cpu 1}${goto 192}${top_mem mem 1}${alignr 0}${top_mem mem_res 1}${font}
+${color2}${top_mem name 2}${color}${goto 110}${font DejaVu Sans Mono:Bold:size=8}${top_mem pid 2}${goto 150}${top_mem cpu 2}${goto 192}${top_mem mem 2}${alignr 0}${top_mem mem_res 2}${font}
+${color2}${top_mem name 3}${color}${goto 110}${font DejaVu Sans Mono:Bold:size=8}${top_mem pid 3}${goto 150}${top_mem cpu 3}${goto 192}${top_mem mem 3}${alignr 0}${top_mem mem_res 3}${font}
+${color2}${top_mem name 4}${color}${goto 110}${font DejaVu Sans Mono:Bold:size=8}${top_mem pid 4}${goto 150}${top_mem cpu 4}${goto 192}${top_mem mem 4}${alignr 0}${top_mem mem_res 4}${font}
+${color2}${top_mem name 5}${color}${goto 110}${font DejaVu Sans Mono:Bold:size=8}${top_mem pid 5}${goto 150}${top_mem cpu 5}${goto 192}${top_mem mem 5}${alignr 0}${top_mem mem_res 5}${font}
+${color lightgrey}${hr 1}
+${color 20FFA1}[NETWORK] ${alignr}${color orange}Address:$color ${addr enp0s31f6}
+
+${color orange}Download:$color ${downspeedf enp0s31f6}k/s${color orange}${alignr}Upload:$color ${upspeedf enp0s31f6}k/s
+$color${downspeedgraph enp0s31f6 25,113 a1a1a1a1 00FF82}         $color${upspeedgraph enp0s31f6 25,113 a1a1a1a1 19BCE6}$color
+${color lightgrey}Total Download:$color ${totaldown enp0s31f6}${color lightgrey}${alignr}Total Upload:$color ${totalup enp0s31f6}
+#${color 20FFA1}[WIRELESS] ${alignr}${color orange}Address:$color ${addr wlp2s0}
+
+#${color orange}Download:$color ${downspeedf enp0s31f6}k/s${color orange}${alignr}Upload:$color ${upspeedf enp0s31f6}k/s
+#$color${downspeedgraph enp0s31f6 25,113 a1a1a1a1 00FF82}         $color${upspeedgraph enp0s31f6 25,113 a1a1a1a1 19BCE6}$color
+#${color lightgrey}Total Download:$color ${totaldown enp0s31f6}${color lightgrey}${alignr}Total Upload:$color ${totalup enp0s31f6}
+${color lightgrey}${hr 1}
+${color 20FFA1}[DISK] ${alignr}${color lightgrey}I/O:$color ${diskio}
+
+${color orange}Root: $color${color}${fs_used /}/${fs_size /} ${fs_bar 10/} $color
+#${color orange}Home: $color${color}${fs_used /home}/${fs_size /home} ${fs_bar /home} $color
+
+${color orange}${alignc}$sysname $kernel ${color}on $color$machine
+${alignc}${color orange}Uptime:$color $uptime
+${hr 1}
