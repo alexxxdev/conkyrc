@@ -115,11 +115,16 @@ ${color lightgrey}Total Download:$color ${totaldown enp0s31f6}${color lightgrey}
 #$color${downspeedgraph enp0s31f6 25,113 a1a1a1a1 00FF82}         $color${upspeedgraph enp0s31f6 25,113 a1a1a1a1 19BCE6}$color
 #${color lightgrey}Total Download:$color ${totaldown enp0s31f6}${color lightgrey}${alignr}Total Upload:$color ${totalup enp0s31f6}
 ${color lightgrey}${hr 1}
-${color 20FFA1}[DISK] ${alignr}${color lightgrey}I/O:$color ${diskio}
+${color 20FFA1}[DISK] ${alignr}
+
+${color orange}${execi 2 /usr/sbin/hddtemp /dev/sda -q | awk '{print $3; }' | sed 's/.$//'}${alignr} ${color}I/O: ${diskio}
+Temperature ${alignr}${execi 2 /usr/sbin/hddtemp /dev/sda -q | awk '{print $4; }'}
 
 ${color orange}Root: $color${color}${fs_used /}/${fs_size /} ${fs_bar 10/} $color
 #${color orange}Home: $color${color}${fs_used /home}/${fs_size /home} ${fs_bar /home} $color
+${color lightgrey}${hr 1}
 
 ${color orange}${alignc}$sysname $kernel ${color}on $color$machine
 ${alignc}${color orange}Uptime:$color $uptime
-${hr 1}
+
+${color lightgrey}${hr 1}
