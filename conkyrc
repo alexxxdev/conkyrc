@@ -107,7 +107,7 @@ ${color lightgrey}${hr 1}
 ${color 20FFA1}[NETWORK] ${alignr}${color orange}Address:$color ${addr enp0s31f6}
 
 ${color orange}Download:$color ${downspeedf enp0s31f6}k/s${color orange}${alignr}Upload:$color ${upspeedf enp0s31f6}k/s
-$color${downspeedgraph enp0s31f6 25,113 a1a1a1a1 00FF82}         $color${upspeedgraph enp0s31f6 25,113 a1a1a1a1 19BCE6}$color
+$color${downspeedgraph enp0s31f6 25,113 a1a1a1a1 00FF82}${alignr}$color${upspeedgraph enp0s31f6 25,113 a1a1a1a1 19BCE6}$color
 ${color lightgrey}Total Download:$color ${totaldown enp0s31f6}${color lightgrey}${alignr}Total Upload:$color ${totalup enp0s31f6}
 #${color 20FFA1}[WIRELESS] ${alignr}${color orange}Address:$color ${addr wlp2s0}
 
